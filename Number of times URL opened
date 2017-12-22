@@ -1,0 +1,22 @@
+f=open('logs.txt',"r")
+#using dictionary- key:value
+d={}
+for elements in f.readlines():
+  #  spliting using seperator "|"
+    z=elements.split("|")
+   # Starting z[0]
+    a=z[0]
+    try:
+        d[a]=d[a]+1
+    except:
+        d[a]=1
+
+#using iteritems to print key and value
+for key,value in d.iteritems():
+    print key,value
+
+#saving result to file
+m=open('ouputTwiter',"w")
+for key,value in d.iteritems():    
+    m.write(str(key+ str(value)+'\n')) 
+
