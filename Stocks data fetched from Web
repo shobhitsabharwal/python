@@ -1,0 +1,13 @@
+import datetime
+import pandas_datareader.data as web
+import matplotlib.pyplot as plt
+from matplotlib import style
+
+style.use('ggplot')
+start = datetime.datetime(2015, 1, 1)
+end = datetime.datetime(2018, 1, 1)
+stocks =['AAPL','GOOGL','C','IBM']  #uses list to show multiple stock in single chart 
+df = web.DataReader(stocks, 'yahoo', start, end) #uses Yahoo to fetch stocks data
+#print(df.head(5)) #print top 5 values from start date mentioned
+df['Adj Close'].plot()
+plt.show()
