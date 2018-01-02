@@ -1,0 +1,34 @@
+import string
+import random
+
+vowels="aeiou"
+consonants = "bcdfghjklmnpqrstvwxyz"
+all_letter=string.ascii_lowercase
+
+Number=input("Number of letters in words: ")
+words=input("Number of words do you want? ")
+letter_input=[]
+for i in range(1,Number+1):
+    letter_input.append(raw_input("What letter %i do you want to enter? for 'v' for vowel, 'c' for consonants, 'i' for any letter: "%i))
+
+#print(letter_input)
+def generator():
+    letter=[]
+    for i in letter_input:
+
+        if i=='v':
+           letter.append(random.choice(vowels))
+        elif i== 'c':
+            letter.append(random.choice(consonants))
+        elif i == 'i':
+            letter.append(random.choice(all_letter))
+        else:
+            letter.append(i)
+    word="".join(letter)
+    return word
+
+for i in range(0,words):
+    print(generator())
+
+
+
