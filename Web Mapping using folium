@@ -1,0 +1,24 @@
+import folium
+import pandas as pd
+
+df=pd.read_csv("Volcanoes-USA.txt")
+
+map=folium.Map(location=[df["LAT"].mean(),df["LON"].mean()],zoom_start=6,tiles='stamen Terrain')
+
+def color(elev):
+    minimum=int(min(df['ELEV']))
+    step=int((min(df['ELEV'])+max(df['ELEV']))/3)
+    if elev in range(minimum,step):
+        col='green'
+    elif elev in range(step,step*2):
+        col='orange'
+    else:
+        col='red'
+    return col
+
+for lat,lon, name, elev in zip(df['LAT'],df['LON'],df['NAME'],df['ELEV']):
+    marker=folium.Marker(location=[lat,lon], popup=(folium.Popup(name)),icon=folium.Icon(color=color(elev),icon='OK'))
+    marker.add_to(map)
+    map.add_child(fg)
+
+map.save(outfile='map.html')
